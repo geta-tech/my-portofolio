@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margaretha Silalahi | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Cardo:italic,wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background-color: #619dac; 
+            color: rgb(204, 191, 155); 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* HERO GRADIENT */
+        .hero-gradient {
+            background: linear-gradient(to top, #284b4d 10%, transparent 90%),
+                        linear-gradient(to right, rgba(3, 3, 3, 0.9) 0%, transparent 60%);
+        }
+
+        /* --- UPGRADED MOTION 
+        
+        /* Reveal lebih tegas: Jarak 80px + Blur + Bounce */
+        .reveal {
+            opacity: 0;
+            transform: translateY(80px) scale(0.95);
+            filter: blur(8px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* Movie Card Hover: Lebih Snappy & Zoom */
+        .movie-card { 
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+            cursor: pointer; 
+            background-color: #181818;
+            border: 1px solid #282828;
+        }
+        
+        .movie-card:hover { 
+            transform: translateY(-15px) scale(1.05); /* Naik lebih tinggi */
+            border-color: #3b82f6; 
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2); /* Shadow berwarna biru tipis */
+            z-index: 10;
+        }
+
+        /* Modal Pop: Lebih Cepat & Melompat */
+        .modal-animate {
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.8) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Nav Link Hover */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+          /* Animasi masuk khusus untuk gambar */
+       @keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+        .animate-gallery {
+    animation: slideInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between transition-all duration-500 bg-transparent">
+        <div class="flex items-center space-x-8">
+            <h2 class="text-blue-300 font-semibold text-lg tracking-wide uppercase italic">Getha</h2>
+            <div class="hidden md:flex space-x-5 text-sm font-medium text-gray-300">
+                <a href="#" class="nav-link hover:text-white">Home</a>
+                <a href="#projects" class="nav-link hover:text-white">Projects</a>
+                <a href="#skill" class="nav-link hover:text-white">Skill</a>
+                <a href="#experience" class="nav-link hover:text-white">Experience</a>
+                <a href="#education" class="nav-link hover:text-white">Education</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-5">
+            <i class="fa-solid fa-search cursor-pointer text-gray-300 hover:text-white transition-transform hover:scale-125"></i>
+            <i class="fa-solid fa-bell cursor-pointer text-gray-300 hover:text-white transition-transform hover:scale-125"></i>
+            <div onclick="toggleProfileModal()" class="w-8 h-8 bg-blue-500 rounded cursor-pointer overflow-hidden border border-gray-700 hover:ring-2 hover:ring-blue-400 transition-all">
+                <img src="assets/images/profil.jpg" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[85vh] w-full flex items-center px-8 md:px-16 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1600')] bg-cover bg-center transition-transform duration-[10s] scale-110">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        <div class="relative z-10 max-w-3xl reveal active">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter">Margaretha Silalahi</h1>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl leading-relaxed">
+                Saya adalah mahasiswa Sistem Informasi yang memiliki minat pada pengembangan sistem dan solusi digital berbasis teknologi. 
+                saya terbiasa mengerjakan proyek aplikasi dan database serta senang mempelajari cara teknologi membantu menyelesaikan masalah nyata secara efektif.
+            </p>
+            <div class="flex space-x-3">
+                <a href="#projects" class="bg-white text-black px-8 py-3 rounded-lg flex items-center font-bold hover:bg-blue-400 hover:text-white transition-all duration-300 shadow-lg transform hover:-translate-y-2 active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> View My Projects
+                </a>
+                <button onclick="toggleProfileModal()" class="bg-gray-500/30 backdrop-blur-xl text-white px-8 py-3 rounded-lg flex items-center font-bold hover:bg-gray-500/50 transition-all duration-300 border border-white/10 active:scale-95">
+                    <i class="fa-solid fa-circle-info mr-2"></i> Get In Touch
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="relative z-10 -mt-20 space-y-32 pb-20">
+        
+        <section id="projects" class="px-8 md:px-16 reveal">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-[0.3em] text-indigo-600">Projects Show</h2>
+            <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+
+        <section id="skill" class="px-8 md:px-16 reveal">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-[0.3em] text-indigo-600">Skills</h2>
+            <div id="skills-list" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            </div>
+        </section>
+
+        <section id="experience" class="px-8 md:px-16 reveal">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-[0.3em] text-indigo-600">Work Experience</h2>
+            <div id="experience-list" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            </div>
+        </section>
+
+        <section id="education" class="px-8 md:px-16 reveal">
+            <h2 class="text-xl font-bold mb-8 uppercase tracking-[0.3em] text-indigo-600">Margaret Education</h2>
+            <div id="education-list" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            </div>
+        </section>
+    </div>
+
+    <div id="projectModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 transition-all duration-500">
+        <div class="bg-[#181818] text-white w-full max-w-6xl max-h-[92vh] rounded-3xl overflow-y-auto relative p-8 md:p-14 border border-white/10 shadow-2xl no-scrollbar modal-animate">
+            <div id="modal-project-body"></div>
+        </div>
+    </div>
+
+    <div id="profileModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity">
+        <div class="bg-[#A5E1E6] w-full max-w-md rounded-[40px] p-10 relative shadow-2xl border-2 border-white/50 text-center">
+            <button onclick="toggleProfileModal()" class="absolute top-6 right-6 text-black/50 hover:text-black text-2xl transition-transform hover:scale-110"> <i class="fa-solid fa-xmark"></i>
+                </button>
+            <div class="w-32 h-32 mx-auto rounded-full border-4 border-white shadow-xl mb-6 overflow-hidden">
+                  <img src="assets/images/profil.jpg" class="w-full h-full object-cover">
+            </div>
+            <h3 style="font-family: 'Montserrat', sans-serif;" class="text-2xl font-black text-black uppercase tracking-widest mb-1"> Margaretha Silalahi </h3>
+            <p style="font-family: 'Cardo', serif;" class="text-black/70 font-bold italic mb-8 text-lg"> Information Systems Student </p>
+            <div class="bg-white/40 rounded-3xl p-6 text-left space-y-5 border border-white/60">
+            <div class="flex items-center text-black/80 hover:text-black transition-colors">
+                <i class="fa-solid fa-envelope text-xl w-10 text-[#FF85B2]"></i>
+                <span style="font-family: 'Cardo', serif;" class="font-medium text-lg">rethasilalahi9@gmail.com</span>
+            </div>
+                <div class="flex items-center text-black/80 hover:text-black transition-colors">
+                <i class="fa-solid fa-phone text-xl w-10 text-[#FF85B2]"></i>
+                <span style="font-family: 'Cardo', serif;" class="font-medium text-lg">+62 812 6958 0807</span>
+            </div>
+                <div class="flex items-center text-black/80 hover:text-black transition-colors">
+                <i class="fa-solid fa-location-dot text-xl w-10 text-[#FF85B2]"></i>
+                <span style="font-family: 'Cardo', serif;" class="font-medium text-lg">Jakarta, Indonesia</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <footer class="px-8 md:px-16 py-16 border-t border-black/10 text-center space-y-8 relative z-10">
+    <div class="flex justify-center items-center space-x-10 text-3xl">
+        <a href="https://linkedin.com/in/margaretha-silalahi-0655a6317" target="_blank" class="text-black hover:text-pink-500 transition-all duration-300">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/geta-tech" target="_blank" class="text-black hover:text-white transition-all duration-300">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://instagram.com/margaretsilalahii" target="_blank" class="text-black hover:text-pink-500 transition-all duration-300">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <div class="pt-8 border-t border-black/5">
+        <p style="font-family: 'Montserrat', sans-serif;" class="text-[10px] font-black tracking-[0.4em] text-black/80 uppercase">
+            © MARGARETHA SILALAHI PORTFOLIO
+        </p>
+    </div>
+</footer>
+
+    <script src="assets/js/data.js"></script>
+    <script>
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 80; // Triggers faster
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
+                } else {
+                    el.classList.remove("active"); // Optional: Re-animate when scrolling back up
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+
+        window.onload = () => {
+    // --- 1. Render Projects ---
+    const pList = document.getElementById('project-list');
+    if (pList && myPortfolioData.projects) {
+        pList.innerHTML = myPortfolioData.projects.map(p => `
+            <div class="movie-card w-full rounded-2xl overflow-hidden shadow-2xl border border-white/5 group relative h-[350px]">
+                <img src="${p.thumbnail}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/70"></div>
+                <div class="absolute inset-0 flex flex-col justify-between p-6 z-10">
+                    <div class="reveal active">
+                        <h3 class="text-white font-bold text-xl drop-shadow-2xl leading-tight">${p.title}</h3>
+                        <div class="h-1 w-10 bg-blue-500 mt-2 rounded-full transform origin-left transition-all duration-500 group-hover:w-full"></div>
+                    </div>
+                    <button onclick="openProjectDetail('${p.id}')" 
+                        class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold text-sm transform transition-all active:scale-95 hover:bg-blue-500 shadow-lg border border-white/10">
+                        Details
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // --- 2. Render Skills (Tampilan 4 ke samping) ---
+    const sList = document.getElementById('skills-list'); 
+    if (sList && myPortfolioData.skills) {
+        sList.innerHTML = myPortfolioData.skills.map(skill => `
+            <div class="group flex flex-col items-center justify-center p-4 bg-[#12141d] rounded-2xl border border-white/5 hover:border-blue-500/50 hover:bg-[#161b22] transition-all duration-500 shadow-lg w-28 h-32 md:w-36 md:h-40">
+                <div class="w-12 h-12 md:w-16 md:h-16 mb-3 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                    <img src="${skill.logo}" alt="${skill.name}" class="max-w-full max-h-full object-contain">
+                </div>
+                <span class="text-[9px] md:text-[11px] font-black text-gray-400 group-hover:text-white tracking-widest uppercase transition-colors text-center">
+                    ${skill.name}
+                </span>
+            </div>
+        `).join('');
+    }
+
+    // --- 3. Render Experience ---
+    const eList = document.getElementById('experience-list');
+if (eList && myPortfolioData.experience) {
+    eList.innerHTML = myPortfolioData.experience.map((e, index) => `
+        <div onclick="openExpModal(${index})" class="bg-[#181818] p-5 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-500 shadow-xl group cursor-pointer hover:scale-[1.01] flex flex-col md:flex-row gap-6 items-center relative z-10">
+            
+            <div class="w-full md:w-48 aspect-video rounded-xl overflow-hidden bg-[#12141d] shrink-0 border border-white/10 relative pointer-events-none">
+                <img src="${e.image}" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                     <span class="text-white text-[10px] font-bold bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">Lihat Detail</span>
+                </div>
+            </div>
+
+            <div class="flex-1 text-center md:text-left pointer-events-none">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-start mb-2">
+                    <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">${e.role}</h3>
+                    <p class="text-blue-400 text-[9px] font-black uppercase tracking-[0.2em] opacity-70 mt-1 md:mt-0">${e.year}</p>
+                </div>
+                <p class="text-gray-400 text-sm mb-3 font-medium">${e.company}</p>
+                <p class="text-[11px] text-gray-500 leading-relaxed italic border-l-0 md:border-l-2 border-white/10 md:pl-4 line-clamp-2">
+                    "${e.desc}"
+                </p>
+            </div>
+        </div>
+    `).join('');
+}
+
+    // --- 4. Render Education ---
+   const edList = document.getElementById('education-list');
+if (edList && myPortfolioData.education) {
+    edList.innerHTML = myPortfolioData.education.map((ed, index) => `
+        <div onclick="openEduModal(${index})" class="bg-[#181818] p-8 rounded-2xl border border-white/5 flex items-center gap-6 shadow-xl hover:bg-[#1a1a1a] transition-all duration-500 hover:scale-[1.02] cursor-pointer group">
+            <div class="bg-blue-500/10 w-16 h-16 rounded-2xl flex items-center justify-center border border-blue-500/20 group-hover:bg-[#FADADD]/20 transition-colors">
+                <i class="fa-solid fa-graduation-cap text-3xl text-blue-400 group-hover:text-[#D4A5A9]"></i>
+            </div>
+            <div>
+                <p class="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1 group-hover:text-[#b08488]">${ed.degree || 'Degree'}</p>
+                <p class="text-xl font-bold text-white tracking-tight">${ed.school}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+    // Jalankan fungsi animasi jika ada
+    if (typeof reveal === "function") reveal();
+};
+
+        function openProjectDetail(id) {
+    const p = myPortfolioData.projects.find(item => item.id === id);
+    const body = document.getElementById('modal-project-body');
+    
+    // Reset posisi scroll ke atas saat modal dibuka
+    body.parentElement.scrollTop = 0;
+    
+    // Container: Centering & Glassmorphism
+    body.parentElement.className = "bg-gradient-to-br from-[#FF85B2]/95 to-[#A5E1E6]/95 backdrop-blur-2xl w-full max-w-6xl h-fit max-h-[90vh] rounded-[40px] overflow-y-auto relative p-8 md:p-12 border border-white/40 shadow-2xl no-scrollbar self-center mx-auto";
+
+    // LOGIKA PERBAIKAN TECH: Mencari data di 'technologies' atau 'tech'
+    const techData = p.technologies || p.tech || [];
+    const techHTML = Array.isArray(techData) 
+        ? techData.map(t => `<span class="bg-black text-white px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase shadow-md hover:scale-110 transition-transform">${t}</span>`).join('') 
+        : `<p class="text-black font-bold text-lg">${techData}</p>`;
+
+    body.innerHTML = `
+        <div class="flex flex-col h-full">
+            <button onclick="closeProjectModal()" class="animate-in w-fit font-bold text-black uppercase tracking-widest text-[10px] mb-8 flex items-center hover:opacity-50 transition" style="animation-delay: 0.1s">
+                <i class="fa-solid fa-arrow-left mr-2"></i> BACK
+            </button>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="animate-in" style="animation-delay: 0.2s">
+                        <h2 class="text-5xl font-black italic uppercase leading-[0.9] text-black tracking-tighter mb-6">${p.title}</h2>
+                        <p style="font-family: 'Cardo', serif;" class="text-xl leading-[1.3] text-black/80 text-justify">${p.description}</p>
+                    </div>
+                    
+                    <div class="animate-in bg-white/30 backdrop-blur-md rounded-3xl p-6 border border-white/50 shadow-sm" style="animation-delay: 0.3s">
+                        <h4 style="font-family: 'Montserrat', sans-serif;" class="text-[9px] font-black uppercase tracking-[0.3em] text-black/40 mb-4">Technologies Used</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${techHTML}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <h4 class="animate-in text-[9px] font-black uppercase tracking-[0.3em] text-black/40" style="animation-delay: 0.4s">Project Gallery</h4>
+                    
+                    <div class="grid grid-cols-1 gap-6">
+                        ${p.evidence.map((img, index) => `
+                            <div class="animate-gallery gallery-card opacity-0" style="animation-delay: ${0.5 + (index * 0.15)}s">
+                                <img src="${img}" class="w-full h-auto rounded-[30px] shadow-2xl border-4 border-white cursor-pointer">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('projectModal').classList.remove('hidden');
+    document.getElementById('projectModal').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+//experience
+function openExpModal(index) {
+    // Pastikan data diambil dari variabel global kamu
+    const data = myPortfolioData.experience[index];
+    const modal = document.getElementById('experience-modal');
+    
+    if (!data) return; // Keamanan jika data tidak ada
+
+    // Isi Konten
+    document.getElementById('modal-img').src = data.image;
+    document.getElementById('modal-title').innerText = data.role;
+    document.getElementById('modal-company').innerText = data.company;
+    document.getElementById('modal-year').innerText = data.year;
+    
+    // Memakai fullDesc sesuai permintaanmu
+    document.getElementById('modal-desc').innerText = `"${data.fullDesc || data.desc}"`;
+    
+    // Munculkan Modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex'); // Paksa jadi flex biar muncul di tengah
+    document.body.style.overflow = 'hidden'; 
+}
+
+// pada education
+function openEduModal(index) {
+    const data = myPortfolioData.education[index];
+    const modal = document.getElementById('education-modal');
+    const content = document.getElementById('edu-content');
+
+    // Isi data
+    document.getElementById('edu-modal-degree').innerText = data.degree;
+    document.getElementById('edu-modal-school').innerText = data.school;
+
+    // Tampilkan Modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Trigger Motion (Scale up)
+    setTimeout(() => {
+        content.classList.remove('scale-90', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 20);
+
+    document.body.style.overflow = 'hidden';
+}
+
+// pada experience close
+function closeExpModal() {
+    const modal = document.getElementById('experience-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto'; 
+}
+
+// pada education close 
+function closeEduModal() {
+    const modal = document.getElementById('education-modal');
+    const content = document.getElementById('edu-content');
+
+    // Motion menghilang
+    content.classList.add('scale-90', 'opacity-0');
+    content.classList.remove('scale-100', 'opacity-100');
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// pada project close
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleProfileModal() {
+            const m = document.getElementById('profileModal');
+            m.classList.toggle('hidden');
+            document.body.style.overflow = m.classList.contains('hidden') ? 'auto' : 'hidden';
+        }
+
+        window.onscroll = () => {
+            reveal();
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#141414]/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
+            } else {
+                nav.classList.remove('bg-[#141414]/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
+            }
+        };
+    </script>
+    <div id="experience-modal" class="fixed inset-0 z-[999] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
+    <div class="bg-[#12141d] max-w-lg w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+        <div class="relative w-full bg-[#0a0a0a] flex items-center justify-center p-2" style="height: 300px;">
+            <img id="modal-img" src="" class="max-w-full max-h-full object-contain">
+            <button onclick="closeExpModal()" class="absolute top-2 right-2 bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center">✕</button>
+        </div>
+        <div class="p-5">
+            <h3 id="modal-title" class="text-white font-bold"></h3>
+            <p id="modal-company" class="text-blue-400 text-sm"></p>
+            <p id="modal-year" class="text-gray-500 text-[10px]"></p>
+            <p id="modal-desc" class="text-gray-400 text-xs mt-2 italic"></p>
+        </div>
+    </div>
+</div>
+       
+    <div id="education-modal" class="fixed inset-0 z-[999] hidden items-center justify-center p-4 bg-[#4a2d31]/80 backdrop-blur-sm transition-all duration-500">
+    
+    <div id="edu-content" class="bg-[#FADADD] max-w-sm w-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(250,218,221,0.4)] border border-white/40 transform scale-90 opacity-0 transition-all duration-300">
+        
+        <div class="flex justify-end p-4">
+            <button onclick="closeEduModal()" class="bg-[#D4A5A9] hover:bg-[#b08488] text-white w-8 h-8 rounded-full flex items-center justify-center transition-all">✕</button>
+        </div>
+
+        <div class="p-8 pt-0 text-center flex flex-col items-center">
+            <div class="w-20 h-20 bg-white/50 rounded-2xl flex items-center justify-center mb-5 shadow-sm">
+                <svg class="w-12 h-12 text-[#b08488]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
+                </svg>
+            </div>
+
+            <p id="edu-modal-degree" class="text-[#b08488] text-[10px] font-black tracking-[0.3em] uppercase mb-2"></p>
+            <h3 id="edu-modal-school" class="text-[#5d4043] text-2xl font-extrabold leading-tight mb-4"></h3>
+            
+            <div class="h-[3px] w-10 bg-[#D4A5A9] rounded-full mb-4"></div>
+            <p class="text-[#7d5a5e] text-xs leading-relaxed italic">"Semangat belajar untuk masa depan yang lebih cerah."</p>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+</body>
+</html>
